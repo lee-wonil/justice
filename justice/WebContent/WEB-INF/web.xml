@@ -15,7 +15,7 @@
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>spring</servlet-name>
+		<servlet-name>justice</servlet-name>
 		<url-pattern>*.git</url-pattern>
 	</servlet-mapping>
 	
