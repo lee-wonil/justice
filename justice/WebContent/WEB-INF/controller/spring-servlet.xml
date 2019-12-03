@@ -8,14 +8,8 @@
 	   http://www.springframework.org/schema/context
 	   http://www.springframework.org/schema/context/spring-context-4.3.xsd
 	  ">
- <context:component-scan base-package="test.spring.action"/>
-	  
-	<bean id="day" class="java.util.Date"/>
-	<bean id="dto" class="test.spring.action.FormDTO">
-		<constructor-arg value="java"/>
-		<constructor-arg ref="day"/>
-		<property name="pw" value="12345"></property>
-	</bean>
+ <context:component-scan base-package="project.justice.action"/>	  
+
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"/>
 		<property name="suffix" value=".jsp"/>
@@ -32,7 +26,6 @@
 		p:password="git08"/>	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="configLocation" value="/WEB-INF/mybatis/mybatis-config.xml"></property>
 	</bean>
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
