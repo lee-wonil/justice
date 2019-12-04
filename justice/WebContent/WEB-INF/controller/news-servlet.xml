@@ -10,27 +10,11 @@
 	  ">
  <context:component-scan base-package="project.justice.action"/>	
  <context:component-scan base-package="project.justice.news"/>	  
- <bean id="dto" class="test.spring.actiton.FormDTO"/>
+ <bean id="dto" class="project.justice.news.NewsDTO"/>
+ <bean id="dao" class="project.justice.news.NewsDAO">
+ 	<property name="sqlSession" ref="sqlSession"> </property>
+ </bean>
 
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/"/>
-		<property name="suffix" value=".jsp"/>
-	</bean>
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="-1"/>
-		<property name="defaultEncoding" value="UTF-8"/>	
-	</bean>
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close"
-		p:driverClassName="oracle.jdbc.driver.OracleDriver"
-		p:url="jdbc:oracle:thin:@nullmaster.iptime.org:1521:xe"
-		p:username="git08"
-		p:password="git08"/>	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
-	</beans>
+
+</beans>
 

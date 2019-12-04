@@ -4,10 +4,7 @@
 
 <body>
 	<center><b>최신 뉴스</b></center>
-	 <c:if test= "${news_count <= 0}">
-	 	<b>해당 분야 기사를 찾지 못했습니다</b>
-	 </c:if>
-	 <c:if test= "${news_count > 0}">
+
 	 	<table>
 		<tr>
 			<td>title</td> <!-- news_url -->
@@ -15,19 +12,19 @@
 			<td>언론사</td> <!--news_press  -->
 			<td>기자</td>	<!-- news_reporter -->
 		</tr>	
-		<c:forEach var="newslist" items="">
+		<c:forEach var="newslist" items="${lst}">
 				<td>
-					 <a href="dto.news_url">${dto.news_title}</a>
+					 <a href="newlist.news_url">${newslist.news_title}</a>
 				</td>
 				<td>
-					 ${dto.news_date}
+					 ${newslist.news_date}
 				</td>			
 				<td>
-					 ${dto.news_press}
-					 ${dto.news_press}
+					 ${newslist.news_press}
+					 ${newslist.news_press}
 				</td>
+				
+				
 		</c:forEach>
 		</table>
-	</c:if>	
-	
 </body>
