@@ -1,6 +1,7 @@
 package project.justice.action;
 
-import org.mybatis.spring.SqlSessionTemplate;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +24,16 @@ public class MainAction {
 		return "login";
 	}
 	@RequestMapping("loginPro.ju")
-	public String loginPro(String id,String passwd,Model model) {
-		model.addAttribute("id", id);
-		model.addAttribute("passwd", passwd);
+	public String loginPro(MemberVO vo,HttpSession session,Model model) {
+		try {
+		 int check = memberDAO.userCheck(vo);
+		 if(check==1) {
+			 session.setAttribute("memId", vo.getId());
+		 }
+		 model.addAttribute("check", check);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "loginPro";
 	}
 	@RequestMapping("registForm.ju")
@@ -37,9 +45,13 @@ public class MainAction {
 		try {
 			memberDAO.insertMember(vo);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "registPro";
+	}
+	@RequestMapping("logout.ju")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "logout";
 	}
 }
