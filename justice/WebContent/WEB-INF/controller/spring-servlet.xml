@@ -8,7 +8,6 @@
 	   http://www.springframework.org/schema/context
 	   http://www.springframework.org/schema/context/spring-context-4.3.xsd
 	  ">
- <context:component-scan base-package="project.justice.action"/>	  
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"/>
@@ -22,10 +21,11 @@
 		destroy-method="close"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
 		p:url="jdbc:oracle:thin:@nullmaster.iptime.org:1521:xe"
-		p:username="git08"
-		p:password="git08"/>	
+		p:username="final01"
+		p:password="final01"/>	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation"	value="/WEB-INF/mybatis/mybatis-config.xml"></property>
 	</bean>
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
