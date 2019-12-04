@@ -18,8 +18,13 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarText">
-			<ul>
-
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="#">뉴스</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">국민청원</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">단어</a>
+				</li>
 			</ul>
 			<c:if test="${memId==null}">
 				<button onclick="location.href='login.ju'">로그인</button>
@@ -27,7 +32,9 @@
 			</c:if>
 			<c:if test="${memId!=null}">
 				<button onclick="location.href='logout.ju'">로그아웃</button>
-			</c:if>			
+				<button onclick="location.href='logout.ju'">회원정보 수정</button>
+				
+			</c:if>
 		</div>
 
 	</nav>

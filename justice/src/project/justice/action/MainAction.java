@@ -17,11 +17,11 @@ public class MainAction {
 	MemberDAO memberDAO = null;
 	@RequestMapping("main.ju")
 	public String main() {
-		return "main";
+		return "member/main";
 	}
 	@RequestMapping("login.ju")
 	public String login() {		
-		return "login";
+		return "member/login";
 	}
 	@RequestMapping("loginPro.ju")
 	public String loginPro(MemberVO vo,HttpSession session,Model model) {
@@ -34,11 +34,11 @@ public class MainAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "loginPro";
+		return "member/loginPro";
 	}
 	@RequestMapping("registForm.ju")
 	public String rigistForm() {
-		return "registForm";
+		return "member/registForm";
 	}
 	@RequestMapping("registPro.ju")
 	public String registPro(MemberVO vo,Model model) {
@@ -47,11 +47,11 @@ public class MainAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "registPro";
+		return "member/registPro";
 	}
 	@RequestMapping("logout.ju")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "logout";
+		return "member/logout";
 	}
 }
