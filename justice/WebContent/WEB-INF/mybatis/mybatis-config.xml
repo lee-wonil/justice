@@ -4,21 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
+
 		<typeAlias type="project.justice.member.MemberVO" alias="member"/>
 		<typeAlias type="project.justice.news.NewsDTO" alias="news"/>
+
 	</typeAliases>
 	<mappers>
 		<mapper resource="/mapper/memberSQL.xml"/>
 		<mapper resource="/sql/newsSQL.xml"/>
 	</mappers>
 </configuration>
-
-
-
-
-
-
-
-
-
-

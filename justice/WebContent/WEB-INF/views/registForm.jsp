@@ -10,7 +10,7 @@
 <body>
 	<div class="container">
 		<h3>회원가입</h3>
-		<form action="registPro.ju">
+		<form action="registPro.ju" method="post">
 			<table class="table">
 				<tr>
 					<td>아이디</td>
