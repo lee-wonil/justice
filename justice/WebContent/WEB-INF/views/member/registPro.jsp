@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-${id}
+<jsp:include page="header.jsp"/>
+<h2>회원가입완료</h2>
+<button onclick="main.ju" >메인으로</button>
 </body>
 </html>

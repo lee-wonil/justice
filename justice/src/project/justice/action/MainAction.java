@@ -1,6 +1,7 @@
 package project.justice.action;
 
-import org.mybatis.spring.SqlSessionTemplate;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,30 +17,41 @@ public class MainAction {
 	MemberDAO memberDAO = null;
 	@RequestMapping("main.ju")
 	public String main() {
-		return "main";
+		return "member/main";
 	}
 	@RequestMapping("login.ju")
 	public String login() {		
-		return "login";
+		return "member/login";
 	}
 	@RequestMapping("loginPro.ju")
-	public String loginPro(String id,String passwd,Model model) {
-		model.addAttribute("id", id);
-		model.addAttribute("passwd", passwd);
-		return "loginPro";
+	public String loginPro(MemberVO vo,HttpSession session,Model model) {
+		try {
+		 int check = memberDAO.userCheck(vo);
+		 if(check==1) {
+			 session.setAttribute("memId", vo.getId());
+		 }
+		 model.addAttribute("check", check);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "member/loginPro";
 	}
 	@RequestMapping("registForm.ju")
 	public String rigistForm() {
-		return "registForm";
+		return "member/registForm";
 	}
 	@RequestMapping("registPro.ju")
 	public String registPro(MemberVO vo,Model model) {
 		try {
 			memberDAO.insertMember(vo);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "registPro";
+		return "member/registPro";
+	}
+	@RequestMapping("logout.ju")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "member/logout";
 	}
 }
