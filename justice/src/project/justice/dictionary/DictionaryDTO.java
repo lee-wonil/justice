@@ -1,4 +1,4 @@
-package project.justice.dictionary.action;
+package project.justice.dictionary;
 
 public class DictionaryDTO {
 	

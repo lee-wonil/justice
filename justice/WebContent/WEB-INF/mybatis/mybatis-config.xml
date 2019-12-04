@@ -7,10 +7,12 @@
 
 		<typeAlias type="project.justice.member.MemberVO" alias="member"/>
 		<typeAlias type="project.justice.news.NewsDTO" alias="news"/>
+		<typeAlias type="project.justice.dictionary.DictionaryDTO" alias="dictionary"/>
 
 	</typeAliases>
 	<mappers>
 		<mapper resource="/mapper/memberSQL.xml"/>
 		<mapper resource="/sql/newsSQL.xml"/>
+		<mapper resource="/dictionary/mapper/dictionarySQL.xml"/>
 	</mappers>
 </configuration>

@@ -1,4 +1,4 @@
-package project.justice.dictionary.action;
+package project.justice.dictionary;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
