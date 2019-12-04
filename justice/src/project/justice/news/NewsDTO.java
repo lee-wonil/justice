@@ -4,15 +4,29 @@ import java.util.List;
 
 public class NewsDTO {
 
+	private int news_count;
+	private String news_title;
 	private String news_url;
 	private String news_date;
+	private String news_press;
+	private String news_reporter;
 	private String news_field;
 	private String news_keyword;
 	private ArrayList news_connectionword;
-	private String news_press;
-	private String news_reporter;
 	
 	
+	public int getNews_count() {
+		return news_count;
+	}
+	public void setNews_count(int news_count) {
+		this.news_count = news_count;
+	}
+	public String getNews_title() {
+		return news_title;
+	}
+	public void setNews_title(String news_title) {
+		this.news_title = news_title;
+	}
 	public String getNews_url() {
 		return news_url;
 	}
