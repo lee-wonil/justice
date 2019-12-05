@@ -22,17 +22,19 @@ public class DictionaryAction {
 	@RequestMapping("list.ju")
 	public String dictionaryList(String pageNum, Model model) {
 		int pageSize = 10;
+		model.addAttribute("pageSize",pageSize);
 		
 		if(pageNum == null) {
 			pageNum = "1";
 		}
+		model.addAttribute("pageNum", pageNum);
+		
 		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage)* pageSize +1;
+		int startRow = (currentPage -1)* pageSize +1;
 		int endRow = currentPage * pageSize;
 		int count = 0;
 		int number = 0;
 		List dictionaryList = null;
-		
 		try {
 			count = dicDAO.getDictionaryCount();
 			if(count>0) {

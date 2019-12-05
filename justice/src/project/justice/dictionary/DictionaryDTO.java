@@ -7,8 +7,10 @@ public class DictionaryDTO {
 	private String meaning;
 	private String substitute;
 	private String user_id;
-	private int recommend;
+	private String dic_recommend_user;
+	private int dic_recommend;
 	private int report_count;
+	private String report_count_user;
 	
 	public int getWord_no() {
 		return word_no;
@@ -40,17 +42,30 @@ public class DictionaryDTO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public int getRecommend() {
-		return recommend;
-	}
-	public void setRecommend(int recommend) {
-		this.recommend = recommend;
-	}
 	public int getReport_count() {
 		return report_count;
 	}
 	public void setReport_count(int report_count) {
 		this.report_count = report_count;
 	}
+	public String getDic_recommend_user() {
+		return dic_recommend_user;
+	}
+	public void setDic_recommend_user(String dic_recommend_user) {
+		this.dic_recommend_user = dic_recommend_user;
+	}
+	public int getDic_recommend() {
+		return dic_recommend;
+	}
+	public void setDic_recommend(int dic_recommend) {
+		this.dic_recommend = dic_recommend;
+	}
+	public String getReport_count_user() {
+		return report_count_user;
+	}
+	public void setReport_count_user(String report_count_user) {
+		this.report_count_user = report_count_user;
+	}
+	
 }
 
