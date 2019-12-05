@@ -6,7 +6,7 @@
 	<typeAliases>
 		<typeAlias type="project.justice.member.MemberVO" alias="memberVO"/>
 		<typeAlias type="project.justice.news.NewsDTO" alias="newsDTO"/>
-		<typeAlias type="project.justice.dictionary.DictionaryDTO" alias="dictionary"/>
+		<typeAlias type="project.justice.dictionary.DictionaryDTO" alias="dictionaryDTO"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="/mapper/memberSQL.xml"/>

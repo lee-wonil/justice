@@ -9,7 +9,7 @@
 			/WEB-INF/controller/spring-servlet.xml
 			/WEB-INF/controller/news-servlet.xml
 			/WEB-INF/controller/dictionary-servlet.xml	
-			/WEB-INF/controller/login-servlet.xml						
+			/WEB-INF/controller/login-servlet.xml			
 			</param-value>
 		</init-param>
 	</servlet>	
@@ -27,6 +27,6 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
-		<url-pattern>*.git</url-pattern>
+		<url-pattern>*.ju</url-pattern>
 	</filter-mapping>
 </web-app>

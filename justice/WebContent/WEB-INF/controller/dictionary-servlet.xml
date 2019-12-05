@@ -8,6 +8,13 @@
 	   http://www.springframework.org/schema/context
 	   http://www.springframework.org/schema/context/spring-context-4.3.xsd
 	  ">
-	
+	<context:component-scan base-package="project.justice.dictionary"/>	 
+	<bean id="sdf" class="java.text.SimpleDateFormat"/>
+	 
+	<bean id="dicDTO" class="project.justice.dictionary.DictionaryDTO"/>
+	<bean id="dicDAO" class="project.justice.dictionary.DictionaryDAO">
+		<property name="sqlSession" ref="sqlSession"> </property>
+	</bean>	
+		
 </beans>
 
