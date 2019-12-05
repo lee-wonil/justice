@@ -9,8 +9,7 @@
 			/WEB-INF/controller/spring-servlet.xml
 			/WEB-INF/controller/news-servlet.xml
 			/WEB-INF/controller/dictionary-servlet.xml	
-			/WEB-INF/controller/login-servlet.xml	
-						
+			/WEB-INF/controller/login-servlet.xml						
 			</param-value>
 		</init-param>
 	</servlet>	

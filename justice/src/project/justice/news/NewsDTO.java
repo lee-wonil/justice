@@ -1,10 +1,7 @@
 package project.justice.news;
-import java.util.ArrayList;
-import java.util.List;
 
 public class NewsDTO {
 
-	private int news_count;
 	private String news_title;
 	private String news_url;
 	private String news_date;
@@ -12,15 +9,10 @@ public class NewsDTO {
 	private String news_reporter;
 	private String news_field;
 	private String news_keyword;
-	private ArrayList news_connectionword;
+	private String news_connectionword;
 	
 	
-	public int getNews_count() {
-		return news_count;
-	}
-	public void setNews_count(int news_count) {
-		this.news_count = news_count;
-	}
+
 	public String getNews_title() {
 		return news_title;
 	}
@@ -51,10 +43,10 @@ public class NewsDTO {
 	public void setNews_keyword(String news_keyword) {
 		this.news_keyword = news_keyword;
 	}
-	public ArrayList getNews_connectionword() {
+	public String getNews_connectionword() {
 		return news_connectionword;
 	}
-	public void setNews_connectionword(ArrayList news_connectionword) {
+	public void setNews_connectionword(String news_connectionword) {
 		this.news_connectionword = news_connectionword;
 	}
 	public String getNews_press() {

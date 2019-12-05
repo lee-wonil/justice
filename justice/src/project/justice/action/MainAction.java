@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import project.justice.member.MemberDAO;
 import project.justice.member.MemberVO;
+
+
 //test
 @Controller
 public class MainAction {
+
 
 	@Autowired
 	MemberDAO memberDAO = null;
