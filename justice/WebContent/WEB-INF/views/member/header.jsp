@@ -19,7 +19,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="#">뉴스</a>
+				<li class="nav-item"><a class="nav-link" href="news/news_list.ju">뉴스</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="#">국민청원</a>
 				</li>
