@@ -23,10 +23,11 @@
 		destroy-method="close"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
 		p:url="jdbc:oracle:thin:@nullmaster.iptime.org:1521:xe"
-		p:username="git08"
-		p:password="git08"/>	
+		p:username="final01"
+		p:password="final01"/>	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="/WEB-INF/mybatis/mybatis-config.xml" />
 	</bean>
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
