@@ -28,16 +28,25 @@
 		</tr>
 		<c:forEach items="${dictionaryList}" var="dictionary" varStatus="index">
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>${number-index.index}</td>
+				<td>${dictionary.wname}</td>
+				<td>${dictionary.substitute}</td>
+				<td>${dictionary.meaning}</td>
+				<td>${dictionary.dic_recommend}</td>
 			</tr>
 		</c:forEach>
-		
-		
 	</table>
+</c:if>
+<c:if test="${count>0}">
+	<c:if test="${startPage>10}">
+        <a href="list.ju?pageNum=${startPage-10}">[이전]</a>
+	</c:if>
+	<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+        <a href="list.ju?pageNum=${i}">[${i}]</a>
+	</c:forEach>
+	<c:if test="${endPage < pageCount }">
+        <a href="list.ju?pageNum=${startPage+10}">[다음]</a>
+    </c:if>
 </c:if>
 	
 	

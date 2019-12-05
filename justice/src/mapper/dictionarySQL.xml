@@ -6,6 +6,13 @@
 	<select id="getCount" resultType="int">
 		select count(*) from dictionary_table
 	</select>
+	
+	<select id="getDictionaryList" resultType="dictionaryDTO" parameterType="hashmap">
+		select * from 
+			(select word_no,wname,meaning,substitute,user_id,dic_recommend_user,dic_recommend,report_count_user,report_count,rownum r from 
+        		(select * from dictionary_table order by word_no))
+		where r <![CDATA[>=]]>#{start} and r<![CDATA[<=]]>#{end}
+	</select>
 </mapper>
 	
 

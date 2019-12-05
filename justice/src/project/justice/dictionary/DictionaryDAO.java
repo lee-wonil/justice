@@ -1,5 +1,6 @@
 package project.justice.dictionary;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -12,14 +13,15 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 	
 	// 사전 숫자 가져오기
 	public int getDictionaryCount() throws Exception{
-		System.out.println("11");
 		int count = sqlSession.selectOne("dictionaryDB.getCount");
-		System.out.println("count :"+count);
 		return count;
 	}
 	// 리스트 읽어오기
 	public List getDictionary(int start, int end) throws Exception{
-		List list = null;
+		HashMap params = new HashMap();
+		params.put("start", start);
+		params.put("end", end);
+		List list = sqlSession.selectList("dictionaryDB.getDictionaryList",params);
 		return list;
 	}
 	// 글 읽어오기
