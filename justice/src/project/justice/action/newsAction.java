@@ -15,7 +15,6 @@ import project.justice.news.NewsDTO;
 @Controller
 @RequestMapping("/news/")
 public class newsAction {
-
 	
 	@Autowired
 	private NewsDAO dao = null;
@@ -26,17 +25,11 @@ public class newsAction {
 	public String news_list(Model model,HttpServletRequest request) {
 		try {
 			List lst = dao.newsList();
-			System.out.println(lst.size());
 			model.addAttribute("lst",lst);
-			request.setAttribute("lst",lst);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "news_list";
-	}
-	
-	
-	
-	
+	}	
 }
