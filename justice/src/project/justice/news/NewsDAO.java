@@ -10,8 +10,8 @@ public class NewsDAO implements NewsImpl {
 		this.sqlSession= sqlSession;
 	}
 	
-	public List newsList() throws Exception{
-		List<NewsDTO> newsList = sqlSession.selectList("news.newsList");
+	public List<NewsDTO> newsList() throws Exception{
+		List<NewsDTO> newsList = sqlSession.selectList("news.getNewsList");
 		return newsList;
 	}
 }

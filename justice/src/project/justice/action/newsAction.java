@@ -31,7 +31,6 @@ public class newsAction {
 			request.setAttribute("lst",lst);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("1");
 			e.printStackTrace();
 		}
 		return "news_list";
