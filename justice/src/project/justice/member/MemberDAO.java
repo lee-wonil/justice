@@ -19,12 +19,24 @@ public class MemberDAO implements MemberImpl{
 		return 0;
 	}
 	public MemberVO getMember(String id) throws Exception {
-		return null;
+		MemberVO vo = sqlSession.selectOne("member.memberId",id);
+		return vo;
 	}
-	public void updateMember(MemberVO vo) throws Exception {		
+	public void updateMember(MemberVO vo) throws Exception {
+		sqlSession.update("member.memberUpdate",vo);		
 	}
 
 	public int deleteMember(String id, String passwd) throws Exception {
+		MemberVO vo = new MemberVO();
+		vo.setId(id);
+		vo.setPasswd(passwd);
+		int count = sqlSession.selectOne("member.userCheck",vo);
+		if(count!=1) {	// 비밀번호가 다른 경우
+			return -1;	// -1 리턴 받음
+		}
+		else {
+			sqlSession.delete("member.memberDelete", vo.getId());
+		}
 		return 0;
 	}
 

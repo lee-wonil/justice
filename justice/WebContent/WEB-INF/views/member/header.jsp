@@ -32,7 +32,7 @@
 			</c:if>
 			<c:if test="${memId!=null}">
 				<button onclick="location.href='logout.ju'">로그아웃</button>
-				<button onclick="location.href='logout.ju'">회원정보 수정</button>
+				<button onclick="location.href='memberEdit2.ju'">회원정보 수정</button>
 				
 			</c:if>
 		</div>
