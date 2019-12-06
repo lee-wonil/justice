@@ -17,13 +17,14 @@
 	<update id="memberUpdate" parameterType="memberVO">
 		update member 
 		<trim prefix="set" suffixOverrides="," >
-			<if test="passwd!=null">passwd = #{passwd},</if>
-			<if test="name!=null">name = #{name},</if>
+			<if test="passwd!=null">passwd = #{passwd},</if>			
 			<if test="email!=null">email = #{email},</if>
-			<if test="blog!=null">blog = #{blog},</if>		
 		</trim>
 		where id = #{id}
 	</update>
+	<delete id="memberDelete" parameterType="String">
+		delete member where id=#{id}
+	</delete>
 </mapper>
 
 
