@@ -10,9 +10,23 @@
 	<select id="getDictionaryList" resultType="dictionaryDTO" parameterType="hashmap">
 		select * from 
 			(select word_no,wname,meaning,substitute,user_id,dic_recommend_user,dic_recommend,report_count_user,report_count,rownum r from 
-        		(select * from dictionary_table order by word_no))
+        		(select * from dictionary_table order by word_no desc))
 		where r <![CDATA[>=]]>#{start} and r<![CDATA[<=]]>#{end}
 	</select>
+	
+	<insert id="insertDictionary" parameterType="dictionaryDTO">
+		insert into dictionary_table values(dictionary_table_seq.nextval, #{wname}, #{meaning}, #{substitute}, #{user_id}, null, 0, null, 0 )
+	</insert>
+	<select id="confirmRecommend" parameterType="int" resultType="string">
+		select dic_recommend_user from dictionary_table where word_no=#{word_no}
+	</select>
+	
+	<update id="getRecommend" parameterType="hashmap">
+		update dictionary_table set dic_recommend_user = NVL2(dic_recommend_user,(dic_recommend_user||','||#{user_id}),#{user_id}),
+    	dic_recommend=dic_recommend+1 where word_no=#{word_no}
+	</update>
+	
+	
 </mapper>
 	
 

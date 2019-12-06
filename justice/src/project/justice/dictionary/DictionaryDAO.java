@@ -1,5 +1,6 @@
 package project.justice.dictionary;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 	// (관리자가) 단어 신규 등록
 	public int insertDictionary(DictionaryDTO dicDTO) throws Exception{
 		int check = 0;
+		check = sqlSession.insert("insertDictionary",dicDTO);
 		return check;
 	}
 	// 수정할 단어 정보 가져오기
@@ -53,6 +55,16 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 	// 리스트에서 단어 추천시 추천수 1증가
 	public int getRecommend(int word_no, String user_id) throws Exception{
 		int check = 0;
+		String id_list = sqlSession.selectOne("confirmRecommend", word_no);
+		String [] id_arr = id_list.split(",");
+		if(Arrays.asList(id_arr).contains(user_id)) {
+			check = -1;
+		}else if(!Arrays.asList(id_arr).contains(user_id)){
+			HashMap params = new HashMap();
+			params.put("word_no", word_no);
+			params.put("user_id", user_id);
+			check = sqlSession.update("getRecommend", params);
+		}
 		return check;
 	}
 	// 게시글 신고

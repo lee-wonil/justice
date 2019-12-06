@@ -19,6 +19,7 @@ public class DictionaryAction {
 	@Autowired
 	private SimpleDateFormat sdf = null;
 	
+	// 리스트
 	@RequestMapping("list.ju")
 	public String dictionaryList(String pageNum, Model model) {
 		int pageSize = 10;
@@ -64,5 +65,73 @@ public class DictionaryAction {
 		
 		return "dictionary/dictionary/dictionaryList";
 	}
+	
+	//추가
+	@RequestMapping("insertDictionary.ju")
+	public String insertDictionary() {
+		
+		return "dictionary/dictionary/insertDictionary";
+	}
+	//추가
+	@RequestMapping("insertDictionaryPro.ju")
+	public String insertDictionaryPro(DictionaryDTO dicDTO, Model model) {
+		try {
+			int check = dicDAO.insertDictionary(dicDTO);
+			model.addAttribute("check", check);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "dictionary/dictionary/insertDictionaryPro";
+	}
+	//수정
+	@RequestMapping("updateDictionary.ju")
+	public String updateDictionary() {
+		
+		return "dictionary/dictionary/updateDictionary";
+	}
+	//수정
+	@RequestMapping("updateDictionaryPro.ju")
+	public String updateDictionaryPro() {
+		return "dictionary/dictionary/updateDictionaryPro";
+	}
+	
+	//삭제
+	@RequestMapping("deleteDictionary.ju")
+	public String deleteDictionary() {
+		return "dictioanry/dictionary/deleteDictionary";
+	}
+	
+	
+	//추천
+	@RequestMapping("recommendDictionary.ju")
+	public String recommendDictionary(Model model, int word_no) {
+		// 매개변수 ID 추가
+		String user_id = "kim";
+		try {
+			int check = dicDAO.getRecommend(word_no, user_id);
+			model.addAttribute("check",check);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "dictionary/dictionary/recommendDictionary";
+	}
+	
+	// 신고
+	@RequestMapping("reportDictionary.ju")
+	public String reportDictionary() {
+		return "dictionary/dictioanry/reportDictionary";
+	}
+	//신고
+	@RequestMapping("reportDictionaryPro.ju")
+	public String reportDictionaryPro() {
+		return "dictionary/dictioanry/reportDictionaryPro";
+	}
+	
+	
+	
+	
+	
+	
+	
 
 }
