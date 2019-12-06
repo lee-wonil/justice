@@ -14,8 +14,6 @@ import project.justice.member.MemberVO;
 //test
 @Controller
 public class MainAction {
-
-
 	@Autowired
 	MemberDAO memberDAO = null;
 	@RequestMapping("main.ju")
@@ -56,5 +54,27 @@ public class MainAction {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "member/logout";
+	}
+	@RequestMapping("memberEdit.ju")
+	public String memberEdit() {			
+		return "member/memberEdit";
+	}
+	@RequestMapping("memberEdit2.ju")
+	public String memberEdit2(MemberVO vo,Model model) {
+		try {
+			int check = memberDAO.userCheck(vo);
+			model.addAttribute("check", check);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "member/memberEdit2";
+	}
+	@RequestMapping("changeMember.ju")
+	public String changeMember() {			
+		return "member/changeMember";
+	}
+	@RequestMapping("deleteMember.ju")
+	public String deleteMember() {			
+		return "member/deleteMember";
 	}
 }
