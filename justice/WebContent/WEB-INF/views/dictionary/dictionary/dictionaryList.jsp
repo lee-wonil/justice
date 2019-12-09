@@ -55,8 +55,8 @@
 				<ul>
 					<li class="menu"><a>▼</a>
 					<ul class="hide">
-						<li><a href="updateDictionary.ju?word_no=${dictionary.word_no}">단어 수정</a></li>
-						<li><a href="deleteDictionary.ju?word_no=${dictionary.word_no}">단어 삭제</a></li>
+						<li><a href="updateDictionary.ju?word_no=${dictionary.word_no}&pageNum=${pageNum}">단어 수정</a></li>
+						<li><a href="deleteDictionary.ju?word_no=${dictionary.word_no}&pageNum=${pageNum}">단어 삭제</a></li>
 					</ul>
 					
 					</li>
@@ -68,7 +68,9 @@
 				<td>${dictionary.meaning}</td>
 				<td>${dictionary.dic_recommend}</td>
 				<!-- 매개변수 id 추가 -->
-				<td><input type="button" onclick="window.location.href='recommendDictionary.ju?word_no=${dictionary.word_no}'" value="추천"/></td>
+				<td><input type="button" onclick="window.location.href='recommendDictionary.ju?word_no=${dictionary.word_no}'" value="추천"/> &nbsp;
+					<input type="button" onclick="window.location.href='reportDictionary.ju?word_no=${dictionary.word_no}'" value="신고"/>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

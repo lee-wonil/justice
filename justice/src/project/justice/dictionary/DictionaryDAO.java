@@ -39,17 +39,28 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 	}
 	// 수정할 단어 정보 가져오기
 	public DictionaryDTO getUpdateDictionary(int word_no) throws Exception{
-		DictionaryDTO dicDTO = null;
+		DictionaryDTO dicDTO = sqlSession.selectOne("getUpdateDicData", word_no);
 		return dicDTO;
 	}
 	// (관리자가) 단어 수정
 	public int updateDictionary(DictionaryDTO dicDTO) throws Exception{
 		int check = 0;
+		try {
+			check = sqlSession.update("updateDictionary", dicDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		return check;
 	}
 	// (관리자가) 단어 삭제
-	public int deleteDictionary(int word_no, String passwd) throws Exception{
+	public int deleteDictionary(int word_no) throws Exception{
 		int check = 0;
+		try {
+			check = sqlSession.delete("deleteDictionary", word_no);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return check;
 	}
 	// 리스트에서 단어 추천시 추천수 1증가
@@ -67,9 +78,29 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 		}
 		return check;
 	}
-	// 게시글 신고
-	public int getReport(int word_no, String user_id) throws Exception{
+	// 게시글 신고 리스트 읽어오기
+	public List getReport() throws Exception{
+		List list = null;
+		try {
+			list = sqlSession.selectList("getReport");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	// 게시글 신고하기
+	public int reportWord(ReportDTO rptDTO) throws Exception{
 		int check = 0;
+		try {
+			check = sqlSession.insert("insertReport", rptDTO);
+			if(check!=0) {
+				sqlSession.insert("insertReportDictionary", rptDTO);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return check;
 	}
 	

@@ -26,6 +26,25 @@
     	dic_recommend=dic_recommend+1 where word_no=#{word_no}
 	</update>
 	
+	<select id="getUpdateDicData" parameterType="int" resultType="dictionaryDTO" >
+		select * from dictionary_table where word_no=#{word_no}
+	</select>
+	<update id="updateDictionary" parameterType="dictionaryDTO">
+		update dictionary_table set wname=#{wname}, meaning=#{meaning}, substitute=#{substitute} where word_no=#{word_no} 
+	</update>
+	<delete id="deleteDictionary" parameterType="int">
+		delete from dictionary_table where word_no=#{word_no}
+	</delete>
+	<insert id="insertReport" parameterType="reportDTO">
+		insert into report_table values(report_table_seq.nextval, #{word_no}, #{wname}, #{user_id}, #{report_reason})
+	</insert>
+	<insert id="insertReportDictionary" parameterType="reportDTO">
+		update dictionary_table set report_count_user = NVL2(report_count_user,(report_count_user||','||#{user_id}),#{user_id}),
+    	report_count=report_count+1 where word_no=#{word_no}
+	</insert>
+	<select id="getReport" resultType="reportDTO">
+		select * from report_table order by report_no desc
+	</select>
 	
 </mapper>
 	

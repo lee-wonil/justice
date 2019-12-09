@@ -16,9 +16,11 @@ public interface DictionaryDAOImpl {
 	// (관리자가) 단어 수정
 	public int updateDictionary(DictionaryDTO dicDTO) throws Exception;
 	// (관리자가) 단어 삭제
-	public int deleteDictionary(int word_no, String passwd) throws Exception;
+	public int deleteDictionary(int word_no) throws Exception;
 	// 리스트에서 단어 추천시 추천수 1증가
 	public int getRecommend(int word_no, String user_id) throws Exception;
+	// 게시글 신고 리스트
+	public List getReport() throws Exception;
 	// 게시글 신고
-	public int getReport(int word_no, String user_id) throws Exception;
+	public int reportWord(ReportDTO rptDTO) throws Exception;
 }

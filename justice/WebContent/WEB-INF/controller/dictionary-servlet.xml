@@ -11,6 +11,7 @@
 	<context:component-scan base-package="project.justice.dictionary"/>	 
 	<bean id="sdf" class="java.text.SimpleDateFormat"/>
 	 
+	<bean id="rptDTO" class="project.justice.dictionary.ReportDTO"/>
 	<bean id="dicDTO" class="project.justice.dictionary.DictionaryDTO"/>
 	<bean id="dicDAO" class="project.justice.dictionary.DictionaryDAO">
 		<property name="sqlSession" ref="sqlSession"> </property>
