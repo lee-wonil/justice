@@ -166,6 +166,28 @@ public class DictionaryAction {
 		return "dictionary/dictionary/reportDictionaryPro";
 	}
 	
+	//신고 게시물 조회
+	@RequestMapping("showReport.ju")
+	public String showReport(Model model) {
+		try {
+			List reportList = dicDAO.getReportList();
+			model.addAttribute("reportList", reportList);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "dictionary/dictionary/showReport";
+	}
+	
+	@RequestMapping("showReportPro.ju")
+	public String showReportPro(Model model, int word_no) {
+		try{
+			List reportContent = dicDAO.getReport(word_no);
+			model.addAttribute("reportContent", reportContent);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "dictionary/dictionary/showReportPro";
+	}
 	
 	
 	

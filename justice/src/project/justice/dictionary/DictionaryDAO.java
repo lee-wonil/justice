@@ -47,6 +47,10 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 		int check = 0;
 		try {
 			check = sqlSession.update("updateDictionary", dicDTO);
+			if(check>0) {
+				int word_no = dicDTO.getWord_no();
+				sqlSession.delete("deleteReport",word_no);
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,6 +61,9 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 		int check = 0;
 		try {
 			check = sqlSession.delete("deleteDictionary", word_no);
+			if(check>0) {
+				sqlSession.delete("deleteReport", word_no);
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,24 +85,19 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 		}
 		return check;
 	}
-	// 게시글 신고 리스트 읽어오기
-	public List getReport() throws Exception{
-		List list = null;
-		try {
-			list = sqlSession.selectList("getReport");
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
 	
 	// 게시글 신고하기
 	public int reportWord(ReportDTO rptDTO) throws Exception{
 		int check = 0;
 		try {
-			check = sqlSession.insert("insertReport", rptDTO);
-			if(check!=0) {
-				sqlSession.insert("insertReportDictionary", rptDTO);
+			check = sqlSession.selectOne("confirmReport", rptDTO);
+			if(check==0) {
+				check = sqlSession.insert("insertReport", rptDTO);
+				if(check!=0) {
+					sqlSession.insert("insertReportDictionary", rptDTO);
+				}
+			}else {
+				check=-1;
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -103,6 +105,31 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 		
 		return check;
 	}
+	
+	
+	// 게시글 신고 리스트 가져오기
+	public List getReportList() throws Exception{
+		List list = null;
+		try{
+			list = sqlSession.selectList("getReportList");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	
+	// 게시글 신고 리스트 읽어오기
+	public List getReport(int word_no) throws Exception{
+		List list = null;
+		try {
+			list = sqlSession.selectList("getReport", word_no);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 	
 	
 }

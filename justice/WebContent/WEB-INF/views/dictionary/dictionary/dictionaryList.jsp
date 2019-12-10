@@ -48,7 +48,7 @@
 			<td></td>
 		</tr>
 		
-		<c:forEach items="${dictionaryList}" var="dictionary" varStatus="index">
+		<c:forEach items="${dictionaryList}" var="dictionary">
 			<tr>
 				<!-- 드롭다운 구현예정 -->
 				<td>
@@ -62,7 +62,7 @@
 					</li>
 				</ul>
 				</td>
-				<td>${number-index.index}</td>
+				<td>${dictionary.word_no}</td>
 				<td>${dictionary.wname}</td>
 				<td>${dictionary.substitute}</td>
 				<td>${dictionary.meaning}</td>
@@ -88,7 +88,7 @@
 </c:if>
 <table>
 	<tr>
-		<td><a href="insertDictionary.ju">글쓰기</a></td>
+		<td><a href="insertDictionary.ju">글쓰기</a> &nbsp; <a href="showReport.ju">신고확인</a></td>
 	</tr>
 </table>
 	

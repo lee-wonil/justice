@@ -6,6 +6,16 @@ public class ReportDTO {
 	private String wname;
 	private String user_id;
 	private String report_reason;
+	private int rpt_count;
+	
+	
+	public int getRpt_count() {
+		return rpt_count;
+	}
+	public void setRpt_count(int rpt_count) {
+		this.rpt_count = rpt_count;
+	}
+	
 	public int getReport_no() {
 		return report_no;
 	}
