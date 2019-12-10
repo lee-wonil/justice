@@ -7,6 +7,22 @@
 <title>Insert title here</title>
 <jsp:include page="header.jsp" />
 </head>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#pw2").keyup(function(){
+			var pw = $("#pw").val();
+			var pw2 = $("#pw2").val();
+			if(pw==pw2){
+				$("#checkPw").html("비밀번호가 동일합니다.")
+				}
+			else{
+				$("#checkPw").html("비밀번호가 다릅니다.")
+				}
+			})
+	})
+</script>
 <body>
 	<div class="container">
 		<h3>회원가입</h3>
@@ -27,7 +43,19 @@
 					<td>
 						<div class="row">
 							<div class="col-xs-4">
-								<input type="password" name="passwd" class="form-control">
+								<input type="password" name="passwd" id="pw"
+									class="form-control">
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>비밀번호확인</td>
+					<td>
+						<div class="row">
+							<div class="col-xs-4">
+								<input type="password" name="passwd2" id="pw2"
+									class="form-control"> <label id=checkPw></label>
 							</div>
 						</div>
 					</td>
