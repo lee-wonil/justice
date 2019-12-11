@@ -1,5 +1,7 @@
 package project.justice.member;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 public class MemberDAO implements MemberImpl{
@@ -39,5 +41,27 @@ public class MemberDAO implements MemberImpl{
 		}
 		return 0;
 	}
+	//admin 세션 체크
+	public int adminCheck(MemberVO vo) throws Exception{
+		int check = 0;
+		check = sqlSession.selectOne("member.adminCheck",vo);
+		return check;
+	}
+	// admin이 회원 정보 관리를 위해 list 받기 위한 메서드
+	public List showMember() throws Exception{
+		List list = null;
+		list = sqlSession.selectList("member.getMemberList");
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
