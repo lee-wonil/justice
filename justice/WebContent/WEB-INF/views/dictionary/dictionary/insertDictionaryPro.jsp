@@ -9,14 +9,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${check==0 || empty check}">
+<c:if test="${adminChk==0 }">
 	<script>
-		alert("단어를 등록할 수 없습니다.");
-		history.go(-1);
+		alert("권한이 없습니다.");
+		window.location.href="list.ju";
 	</script>
 </c:if>
-<c:if test="${check>=0}">
-	<meta http-equiv='refresh' content='0;url=list.ju'>
+<c:if test="${adminChk==1 }">
+	<c:if test="${check==0 || empty check}">
+		<script>
+			alert("단어를 등록할 수 없습니다.");
+			history.go(-1);
+		</script>
+	</c:if>
+	<c:if test="${check>=0}">
+		<meta http-equiv='refresh' content='0;url=list.ju'>
+	</c:if>
 </c:if>
 </body>
 </html>

@@ -37,7 +37,7 @@
 			<!-- 관리자 추가 -->
 			<c:if test="${memId!=null && admin != null}">
 				<button onclick="location.href='logout.ju'">로그아웃</button>
-				<button onclick="location.href='adminpage.ju'">관리자관리자</button>
+				<button onclick="location.href='adminpage.ju'">관리자페이지</button>
 			</c:if>
 		</div>
 

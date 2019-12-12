@@ -5,12 +5,11 @@
 	<form id="${vo.id}" class="${vo.id}" action="#">
 		<table>
 			<tr>
-				<td><input type="text" value="${vo.id}" name="id" id="id" readonly/></td>
-				<td><input type="text" value="${vo.passwd }" name="passwd"/></td>
-				<td><input type="text" value="${vo.name }" name="name"/></td>
-				<td><input type="text" value="${vo.admin}" name="admin"/></td>
-				<td><input type="text" value="${vo.email}" name="email"/></td>
-				<td><input type="button" id="btn_${vo.id}" value="전송" onclick="fuck('${vo.id}','${vo.passwd }','${vo.name }','${vo.admin }','${vo.email}')"/></td>
+				<td><input type="text" value="${vo.id}" name="${vo.id}_id" id="${vo.id}_id" readonly/></td>
+				<td><input type="text" value="${vo.passwd}" name="${vo.id}_passwd" id="${vo.id}_passwd" /></td>
+				<td><input type="text" value="${vo.name}" name="${vo.id}_name" id="${vo.id}_name"/></td>
+				<td><input type="text" value="${vo.email}" name="${vo.id}_email" id="${vo.id}_email" /></td>
+				<td><input type="button" id="btn_${vo.id}" value="전송" onclick="updateBtn('${vo.id}')"/></td>
 			</tr>
 		</table>
 	</form>

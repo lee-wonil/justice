@@ -53,7 +53,25 @@ public class MemberDAO implements MemberImpl{
 		list = sqlSession.selectList("member.getMemberList");
 		return list;
 	}
-	
+	// admin이 계정 삭제
+	public int deleteMemberByAdmin(String id) throws Exception{
+		int check = 0;
+		try {
+			check = sqlSession.delete("deleteMemberByAdmin", id);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return check;
+	}
+	public int updateMemberByAdmin(MemberVO vo) throws Exception{
+		int check = 0;
+		try {
+			check = sqlSession.update("updateMemberByAdmin", vo);
+		}catch (Exception e) {
+			e.printStackTrace();			
+		}		
+		return check;		
+	}
 	
 	
 	

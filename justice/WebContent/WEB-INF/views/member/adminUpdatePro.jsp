@@ -8,9 +8,18 @@
 <title>Insert title here</title>
 </head>
 <c:if test="${check==1}">
-<body>
-	<meta http-equiv='refresh' content='0;url=adminpage.ju'>
-</body>
+	<c:if test="${updateCheck==0}">
+		<script>
+			alert("수정에 실패했습니다.");
+			history.go(-1);
+		</script>
+	</c:if>
+	<c:if test="${updateCheck==1 }">
+		<script>
+			alert("수정완료");
+			window.location.href="adminpage.ju";
+		</script>
+	</c:if>
 </c:if>
 <c:if test="${check==0}">
 	<script>

@@ -155,15 +155,6 @@ public class MainAction {
 	}
 	@RequestMapping("adminUpdatePro.ju")
 	public String adminUpdatePro(MemberVO vo, Model model, HttpSession session) {
-		
-		System.out.println(vo.getId());
-		System.out.println(vo.getAdmin());
-		System.out.println(vo.getEmail());
-		System.out.println(vo.getName());
-		System.out.println(vo.getPasswd());
-		
-		
-		
 		String admin = (String)session.getAttribute("admin");
 		int check = 0;
 		if(admin == null) {
@@ -171,7 +162,10 @@ public class MainAction {
 		}else if(admin != null) {
 			check = 1;
 			try {
-				System.out.println("ㅎㅎㅎㅎ");
+				// update가 정상적으로 실행 됐는지 여부를 보낸다. 0이면 실패 1이면 정상종료 
+				int updateCheck = 0;
+				updateCheck= memberDAO.updateMemberByAdmin(vo);
+				model.addAttribute("updateCheck", updateCheck);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -180,8 +174,8 @@ public class MainAction {
 		
 		return "member/adminUpdatePro";
 	}
-	@RequestMapping("daminDeletePro.ju")
-	public String adminDeletePro(HttpSession session,Model model) {
+	@RequestMapping("adminDeletePro.ju")
+	public String adminDeletePro(HttpSession session,Model model, String id) {
 		String admin = (String)session.getAttribute("admin");
 		int check = 0;
 		if(admin == null) {
@@ -189,7 +183,8 @@ public class MainAction {
 		}else if(admin != null) {
 			check = 1;
 			try {
-				
+				int delChk = memberDAO.deleteMemberByAdmin(id);
+				model.addAttribute("delChk",delChk);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -8,6 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:if test="${adminChk==0 }">
+	<script>
+		alert("권한이 없습니다.");
+		window.location.href="list.ju";
+	</script>
+</c:if>
+<c:if test="${adminChk==1 }">
 	<table border="1">
 		<tr>
 			<td>신고자</td>
@@ -22,5 +29,6 @@
 		</tr>
 	</c:forEach>
 	</table>
+</c:if>
 </body>
 </html>

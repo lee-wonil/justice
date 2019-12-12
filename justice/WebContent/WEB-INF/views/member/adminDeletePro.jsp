@@ -9,6 +9,8 @@
 </head>
 <body>
 <c:if test="${check==1}">
+	<c:if test="${delChk==1}"> <meta http-equiv='refresh' content='0;url=adminpage.ju'> </c:if>
+	<c:if test="${delChk==0}"> <script> alert("삭제중 오류가 발생했습니다."); history.go(-1); </script></c:if>
 </c:if>
 <c:if test="${check==0}">
 	<script>

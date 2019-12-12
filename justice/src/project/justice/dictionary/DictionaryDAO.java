@@ -73,15 +73,21 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 	// 리스트에서 단어 추천시 추천수 1증가
 	public int getRecommend(int word_no, String user_id) throws Exception{
 		int check = 0;
+		HashMap params = new HashMap();
 		String id_list = sqlSession.selectOne("confirmRecommend", word_no);
-		String [] id_arr = id_list.split(",");
-		if(Arrays.asList(id_arr).contains(user_id)) {
-			check = -1;
-		}else if(!Arrays.asList(id_arr).contains(user_id)){
-			HashMap params = new HashMap();
+		if(id_list == null) {
 			params.put("word_no", word_no);
 			params.put("user_id", user_id);
 			check = sqlSession.update("getRecommend", params);
+		}else {
+			String [] id_arr = id_list.split(",");
+			if(Arrays.asList(id_arr).contains(user_id)) {
+				check = -1;
+			}else if(!Arrays.asList(id_arr).contains(user_id)){
+				params.put("word_no", word_no);
+				params.put("user_id", user_id);
+				check = sqlSession.update("getRecommend", params);
+			}
 		}
 		return check;
 	}

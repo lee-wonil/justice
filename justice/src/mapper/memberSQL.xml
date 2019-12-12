@@ -32,6 +32,21 @@
 	<select id="getMemberList" resultType="memberVO">
 		select * from member
 	</select>
+	<!-- admin이 회원 탈퇴  -->
+	<delete id="deleteMemberByAdmin" parameterType="String">
+		delete from member where id=#{id}
+	</delete>
+	<!--  admin이 회원 정보 수정 -->
+	<update	id="updateMemberByAdmin" parameterType="memberVO">
+		update member 
+		<trim prefix="set" suffixOverrides=",">
+			<if test="name!=null">name=#{name},</if>
+			<if test="passwd!=null">passwd =#{passwd},</if>
+			<if test="email!=null">email=#{email},</if>
+		</trim>
+		where id = #{id}
+	</update>
+	
 </mapper>
 
 
