@@ -33,7 +33,7 @@ function button_click(s) {
 <tr>
 	<td>${i.p_no}</td>
 	<td>${i.p_subject}</td>
-	<td style="width: 60%"><a href="info.ju?num=${i.p_no}">${i.p_title}</a></td>
+	<td style="width: 60%">${i.p_title}</td>
 	<td style="width: 10%"><button onclick="button_click(${i.p_no})" class="btn btn-secondary">청원바로가기</button></td>
 	<td><fmt:formatDate value="${i.p_date}" pattern="yyyy-MM-dd"/></td>
 	<td>${i.p_person}명</td>
@@ -45,5 +45,14 @@ function button_click(s) {
 </tr>
 </c:forEach>
 </table>
+<c:if test="${startPage!=1}">
+	<a href="main2.ju?page=${startPage-10}">이전</a>
+</c:if>
+<c:forEach begin="${startPage}" end="${lastPage}" var="i">
+	<a href="main2.ju?page=${i}">${i}</a>
+</c:forEach>
+<c:if test="${lastPage!=pageAll}">
+	<a href="main2.ju?page=${lastPage+1}">다음</a>
+</c:if>
 </body>
 </html>
