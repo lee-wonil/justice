@@ -77,7 +77,7 @@
 				</ul>
 				</td>
 				</c:if>
-				<td>${dictionary.word_no}</td>
+				<td><span id="sp_word_no">${dictionary.word_no}</span></td>
 				<td>${dictionary.wname}</td>
 				<td>${dictionary.substitute}</td>
 				<td>${dictionary.meaning}</td>
@@ -85,6 +85,7 @@
 				<!-- 매개변수 id 추가 -->
 				<td><input type="button" onclick="window.location.href='recommendDictionary.ju?word_no=${dictionary.word_no}&pageNum=${pageNum}'" value="추천"/> &nbsp;
 					<input type="button" onclick="window.location.href='reportDictionary.ju?word_no=${dictionary.word_no}&pageNum=${pageNum}'" value="신고"/>
+					<input type="button" value="제안하기" onclick="window.location.href='../dboard/boardWrite.ju?word_no=${dictionary.word_no}'"/>
 				</td>
 			</tr>
 		</c:forEach>

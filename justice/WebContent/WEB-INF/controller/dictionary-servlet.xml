@@ -16,6 +16,11 @@
 	<bean id="dicDAO" class="project.justice.dictionary.DictionaryDAO">
 		<property name="sqlSession" ref="sqlSession"> </property>
 	</bean>	
+	
+	<bean id="brdDTO" class="project.justice.dictionary.BoardDTO"/>
+	<bean id="brdDAO" class="project.justice.dictionary.BoardDAO">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
 		
 </beans>
 

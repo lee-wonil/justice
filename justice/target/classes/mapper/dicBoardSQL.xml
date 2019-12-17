@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="d_board_DB">
+	<select id="getCount" parameterType="hashmap" resultType="int">
+		select count(*) from d_board_table
+		<include refid="search"></include>
+	</select>
+	
+	<select id="getBoardList" resultType="BoardDTO" parameterType="hashmap">
+		select * from 
+			(select d_board_no, word_no, wname, prompt, meaning, detail_content, b_recommend_user, b_recommend, user_id, board_reg, rownum r from
+				(select * from d_board_table order by d_board_no desc))
+		where r <![CDATA[>=]]>#{start} and r<![CDATA[<=]]>#{end}
+	</select>
+	<select id="getWordData" resultType="String" parameterType="int">
+		select wname from dictionary_table where word_no = #{word_no}
+	</select>
+	
+	<insert id="insertPost" parameterType="BoardDTO">
+		insert into d_board_table values(d_board_table_seq.nextval,#{word_no},#{wname},#{prompt},#{meaning},#{detail_content},null,0,#{user_id},sysdate)
+	</insert>
+	<select id="getPost" parameterType="int" resultType="BoardDTO">
+		select * from d_board_table where d_board_no = #{d_board_no}
+	</select>	
+
+	
+	<sql id="search">
+		<choose>
+			<when test="category == 'all'">
+				where meaning like '%'||#{keyword}||'%'
+				OR wname like '%'||#{keyword}||'%'
+				OR prompt like '%'||#{keyword}||'%'
+			</when>
+			<otherwise>
+				where #{category} like '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+	
+	
+	
+	
+	
+</mapper>
