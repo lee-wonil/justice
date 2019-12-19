@@ -34,22 +34,22 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 	// (관리자가) 단어 신규 등록
 	public int insertDictionary(DictionaryDTO dicDTO) throws Exception{
 		int check = 0;
-		check = sqlSession.insert("insertDictionary",dicDTO);
+		check = sqlSession.insert("dictionaryDB.insertDictionary",dicDTO);
 		return check;
 	}
 	// 수정할 단어 정보 가져오기
 	public DictionaryDTO getUpdateDictionary(int word_no) throws Exception{
-		DictionaryDTO dicDTO = sqlSession.selectOne("getUpdateDicData", word_no);
+		DictionaryDTO dicDTO = sqlSession.selectOne("dictionaryDB.getUpdateDicData", word_no);
 		return dicDTO;
 	}
 	// (관리자가) 단어 수정
 	public int updateDictionary(DictionaryDTO dicDTO) throws Exception{
 		int check = 0;
 		try {
-			check = sqlSession.update("updateDictionary", dicDTO);
+			check = sqlSession.update("dictionaryDB.updateDictionary", dicDTO);
 			if(check>0) {
 				int word_no = dicDTO.getWord_no();
-				sqlSession.delete("deleteReport",word_no);
+				sqlSession.delete("dictionaryDB.deleteReport",word_no);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -60,9 +60,9 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 	public int deleteDictionary(int word_no) throws Exception{
 		int check = 0;
 		try {
-			check = sqlSession.delete("deleteDictionary", word_no);
+			check = sqlSession.delete("dictionaryDB.deleteDictionary", word_no);
 			if(check>0) {
-				sqlSession.delete("deleteReport", word_no);
+				sqlSession.delete("dictionaryDB.deleteReport", word_no);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -74,11 +74,11 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 	public int getRecommend(int word_no, String user_id) throws Exception{
 		int check = 0;
 		HashMap params = new HashMap();
-		String id_list = sqlSession.selectOne("confirmRecommend", word_no);
+		String id_list = sqlSession.selectOne("dictionaryDB.confirmRecommend", word_no);
 		if(id_list == null) {
 			params.put("word_no", word_no);
 			params.put("user_id", user_id);
-			check = sqlSession.update("getRecommend", params);
+			check = sqlSession.update("dictionaryDB.getRecommend", params);
 		}else {
 			String [] id_arr = id_list.split(",");
 			if(Arrays.asList(id_arr).contains(user_id)) {
@@ -86,7 +86,7 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 			}else if(!Arrays.asList(id_arr).contains(user_id)){
 				params.put("word_no", word_no);
 				params.put("user_id", user_id);
-				check = sqlSession.update("getRecommend", params);
+				check = sqlSession.update("dictionaryDB.getRecommend", params);
 			}
 		}
 		return check;
@@ -96,11 +96,11 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 	public int reportWord(ReportDTO rptDTO) throws Exception{
 		int check = 0;
 		try {
-			check = sqlSession.selectOne("confirmReport", rptDTO);
+			check = sqlSession.selectOne("dictionaryDB.confirmReport", rptDTO);
 			if(check==0) {
-				check = sqlSession.insert("insertReport", rptDTO);
+				check = sqlSession.insert("dictionaryDB.insertReport", rptDTO);
 				if(check!=0) {
-					sqlSession.insert("insertReportDictionary", rptDTO);
+					sqlSession.insert("dictionaryDB.insertReportDictionary", rptDTO);
 				}
 			}else {
 				check=-1;
@@ -117,7 +117,7 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 	public List getReportList() throws Exception{
 		List list = null;
 		try{
-			list = sqlSession.selectList("getReportList");
+			list = sqlSession.selectList("dictionaryDB.getReportList");
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -129,7 +129,7 @@ public class DictionaryDAO implements DictionaryDAOImpl {
 	public List getReport(int word_no) throws Exception{
 		List list = null;
 		try {
-			list = sqlSession.selectList("getReport", word_no);
+			list = sqlSession.selectList("dictionaryDB.getReport", word_no);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

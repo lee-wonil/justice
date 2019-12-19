@@ -33,14 +33,14 @@ public class BoardAction {
 							Model model, HttpSession session) {
 		String admin = (String)session.getAttribute("admin");
 		String memId = (String)session.getAttribute("memId");
-		model.addAttribute("memId");
+		model.addAttribute("memId",memId);
 		
 		if(admin!= null) {
-			model.addAttribute("admin");
+			model.addAttribute("admin",admin);
 		}
 		int pageSize=10;
-		model.addAttribute("pageSize");
-		model.addAttribute("pageNum");
+		model.addAttribute("category", category);
+		model.addAttribute("keyword", keyword);
 		
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage -1)* pageSize +1;
@@ -50,7 +50,6 @@ public class BoardAction {
 		List boardList = null;
 		try {
 			count = brdDAO.getBoardCount(category, keyword);
-			System.out.println(count);
 			if(count>0) {
 				boardList = brdDAO.getBoardList(pageNum, category, keyword, startRow, endRow);
 			}
@@ -112,30 +111,107 @@ public class BoardAction {
 	@RequestMapping("boardUpdate.ju")
 	public String boardUpdate(Model model,HttpSession session, int d_board_no) throws Exception {
 		String memId = (String)session.getAttribute("memId");
+		String admin = (String)session.getAttribute("admin");
 		BoardDTO brdDTO = brdDAO.getUpdatePost(d_board_no);
+		model.addAttribute("brdDTO", brdDTO);
 		
+		// 기본값 0, 실행에러
 		int check = 0;
 		
-		if(memId.equals(brdDTO.getUser_id())) {
+		// 글쓴이거나, admin일때. 1
+		if(memId.equals(brdDTO.getUser_id()) || admin != null) {
+			check = 1;
 			System.out.println("hello");
+		}else{
+			// 글쓴이도 아니고 admin도 아닐때
+			check = -1;
 		}
+		model.addAttribute("check", check);
 		
 		return "/dictionary/dicBoard/boardUpdate";
 	}
 	
 	@RequestMapping("boardUpdatePro.ju")
-	public String boardUpdatePro() {
+	public String boardUpdatePro(Model model, BoardDTO brdDTO,HttpSession session) throws Exception {
+		String memId = (String)session.getAttribute("memId");
+		String admin = (String)session.getAttribute("admin");
+		String user_id = brdDTO.getUser_id();
+		
+		int check = 0;
+		
+		System.out.println(memId);
+		System.out.println(user_id);
+		if(memId.equals(user_id) || admin!= null) {
+			check = 1;
+			int updateChk = brdDAO.updatePost(brdDTO);
+			model.addAttribute("updateChk", updateChk);
+		}else {
+			check = -1;
+		}
+		model.addAttribute("check", check);
+		
 		return "/dictionary/dicBoard/boardUpdatePro";
 	}
 	
 	@RequestMapping("boardDelete.ju")
-	public String boardDelete() {
+	public String boardDelete(Model model, HttpSession session, int d_board_no) throws Exception {
+		String memId = (String)session.getAttribute("memId");
+		String admin = (String)session.getAttribute("admin");
+		brdDTO = brdDAO.getUpdatePost(d_board_no);
+		String user_id = brdDTO.getUser_id();
+		System.out.println(user_id);
+		int check = 0;
+		if(memId!= null) {
+			if(memId.equals(user_id) || admin!= null) {
+				check = 1;
+			}else {
+				check = -1;
+			}
+		}else {
+			check = -1;
+		}
+		model.addAttribute("check",check);
+		model.addAttribute("d_board_no",d_board_no);
 		return "/dictionary/dicBoard/boardDelete";
+	}
+	@RequestMapping("boardDeletePro.ju")
+	public String boardDeletePro(Model model, HttpSession session, String passwd, int d_board_no) throws Exception {
+		String memId = (String)session.getAttribute("memId");
+		String admin = (String)session.getAttribute("admin");
+		brdDTO = brdDAO.getUpdatePost(d_board_no);
+		String user_id = brdDTO.getUser_id();
+		
+		int check = 0;
+		int delChk = 0;
+		// 한번 더 유저체크 check = 0 -> 에러, 1 = 정상, -1 = 정상적인경로가아님 ( 세션없음)
+		if(memId.equals(user_id) || admin!= null) {
+			check = 1;
+			delChk = brdDAO.deletePost(d_board_no, user_id, admin, passwd);
+		}else {
+			check = -1;
+		}
+		model.addAttribute("check",check);
+		model.addAttribute("delChk",delChk);
+		return "/dictionary/dicBoard/boardDeletePro";
 	}
 	
 	
 	@RequestMapping("boardRecommend.ju")
-	public String boardRecommend() {
+	public String boardRecommend(Model model,HttpSession session,int d_board_no, String pageNum) {
+		model.addAttribute("pageNum",pageNum);
+		String user_id = (String)session.getAttribute("memId");
+		
+		int chkLogin = 0;
+		if(user_id!= null) {
+			chkLogin = 1;
+			try {
+				int check = brdDAO.getRecommend(d_board_no, user_id);
+				model.addAttribute("check",check);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		model.addAttribute("chkLogin",chkLogin);
 		return "/dictionary/dicBoard/boardRecommend";
 	}
 	

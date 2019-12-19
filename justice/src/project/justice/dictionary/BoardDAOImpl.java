@@ -18,7 +18,7 @@ public interface BoardDAOImpl {
 	// 게시글 수정 메서드
 	public int updatePost(BoardDTO brdDTO) throws Exception;
 	// 게시글 삭제 메서드
-	public int deletePost(int d_board_no, String user_id, String passwd) throws Exception;
+	public int deletePost(int d_board_no, String user_id, String admin, String passwd) throws Exception;
 	// 추천 메서드
 	public int getRecommend(int d_board_no, String user_id) throws Exception;
 	// 투표게시판으로 옮기는 메서드
